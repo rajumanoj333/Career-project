@@ -1,0 +1,23 @@
+[
+  {
+    "id": "basic-tutorial",
+    "config": {
+      "steps\\state_audit_cron_step.py": {
+        "x": 204,
+        "y": -36
+      },
+      "steps\\process_food_order_step.py": {
+        "x": 302,
+        "y": 339
+      },
+      "steps\\notification_step.py": {
+        "x": 929,
+        "y": 168
+      },
+      "steps\\api_step.py": {
+        "x": -132,
+        "y": 326
+      }
+    }
+  }
+]
