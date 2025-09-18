@@ -1,0 +1,32 @@
+name: Phase 01 Issue Generator
+on:
+  workflow_dispatch:
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create issues from list
+        uses: imjohnbo/issue-bot@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issues: |
+            - title: Day 1 - Repo Setup: Create /backend and /frontend folders
+            - title: Day 1 - Repo Setup: Add .gitignore
+            - title: Day 1 - Repo Setup: Add README.md
+            - title: Day 2 - Backend: Add health check API
+            - title: Day 2 - Backend: Update README with API endpoint
+            - title: Day 3 - Backend: Setup MongoDB connection
+            - title: Day 3 - Backend: Add /auth/register API
+            - title: Day 3 - Backend: Add /auth/login API
+            - title: Day 4 - Frontend: Init React + Tailwind project
+            - title: Day 4 - Frontend: Add Tailwind config with custom colors
+            - title: Day 4 - Frontend: Create placeholder pages (/login, /register)
+            - title: Day 5 - Frontend: Implement Register form
+            - title: Day 5 - Frontend: Implement Login form
+            - title: Day 5 - Frontend: Wire Axios for API calls
+            - title: Day 6 - Backend: Add /profile GET/PUT API
+            - title: Day 6 - Backend: Extend user schema with role
+            - title: Day 7 - Frontend: Add /dashboard route
+            - title: Day 7 - Frontend: Show role-based dashboard heading
+            - title: Day 7 - Frontend: Add logout button

@@ -1,0 +1,44 @@
+name: Create Phase 01 Issues
+on:
+  workflow_dispatch:
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create Issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO="${{ github.repository }}"
+          issues=(
+            "Day 1 - Repo Setup: Create /backend and /frontend folders"
+            "Day 1 - Repo Setup: Add .gitignore"
+            "Day 1 - Repo Setup: Add README.md"
+            "Day 2 - Backend: Add health check API"
+            "Day 2 - Backend: Update README with API endpoint"
+            "Day 3 - Backend: Setup MongoDB connection"
+            "Day 3 - Backend: Add /auth/register API"
+            "Day 3 - Backend: Add /auth/login API"
+            "Day 4 - Frontend: Init React + Tailwind project"
+            "Day 4 - Frontend: Add Tailwind config with custom colors"
+            "Day 4 - Frontend: Create placeholder pages (/login, /register)"
+            "Day 5 - Frontend: Implement Register form"
+            "Day 5 - Frontend: Implement Login form"
+            "Day 5 - Frontend: Wire Axios for API calls"
+            "Day 6 - Backend: Add /profile GET/PUT API"
+            "Day 6 - Backend: Extend user schema with role"
+            "Day 7 - Frontend: Add /dashboard route"
+            "Day 7 - Frontend: Show role-based dashboard heading"
+            "Day 7 - Frontend: Add logout button"
+          )
+          
+          for title in "${issues[@]}"; do
+            gh issue create --repo "$REPO" --title "$title" --body "Auto-generated for Phase 01"
+          done
