@@ -1,10 +1,26 @@
-fastapi
-uvicorn
-pydantic
-python-multipart
-python-jose[cryptography]
-passlib[bcrypt]
-python-dotenv
-sqlalchemy
-alembic
-psycopg2-binary
+# Core Web Framework
+fastapi==0.110.0
+uvicorn[standard]==0.29.0
+
+# Data Models & Settings
+# Use a version with prebuilt wheels for Python 3.13 to avoid rust toolchain
+pydantic==2.11.7
+pydantic-settings==2.2.1
+python-dotenv==1.0.1
+
+# Database
+sqlalchemy[asyncio]==2.0.28
+alembic==1.13.1
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.9
+
+# Supabase SDK and Dependencies
+supabase
+# Let supabase resolve compatible postgrest version
+aiosqlite
+
+
+httpx==0.27.0
