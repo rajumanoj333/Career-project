@@ -1,8 +1,17 @@
-node_modules
-python_modules
-.venv
-venv
-.motia
-.mermaid
-dist
-*.pyc
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.eslintcache
+
+# Python
+.venv/
+backend/__pycache__/
+.pytest_cache/
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+
+# Bootstrap artifact
+get-pip.py
