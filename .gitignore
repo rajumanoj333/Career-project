@@ -6,6 +6,8 @@ frontend/.eslintcache
 # Python
 .venv/
 backend/__pycache__/
+**/__pycache__/
+
 .pytest_cache/
 
 # Editor/OS
