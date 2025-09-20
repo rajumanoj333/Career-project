@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { TextScramble } from '@/components/core/text-scramble';
 import { useState } from 'react';
 import { register } from '@/services/api';
+import { useNavigate } from 'react-router-dom';
 
 interface RegisterPageProps {
   onNavigateToLogin?: () => void;
@@ -19,19 +20,25 @@ export default function RegisterPage({ onNavigateToLogin }: RegisterPageProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setMessage('');
+    setLoading(true);
     try {
       const fullName = `${firstname} ${lastname}`;
       const response = await register(email, password, fullName);
       setMessage(response.data.message);
       console.log('Registered successfully');
+      navigate('/login'); // Redirect to login page after successful registration
     } catch (err) {
       setError('Failed to register. Please try again.');
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -153,6 +160,7 @@ export default function RegisterPage({ onNavigateToLogin }: RegisterPageProps) {
                   placeholder="First name"
                   value={firstname}
                   onChange={(e) => setFirstname(e.target.value)}
+                  disabled={loading}
                 />
               </div>
               <div className="space-y-2">
@@ -170,6 +178,7 @@ export default function RegisterPage({ onNavigateToLogin }: RegisterPageProps) {
                   placeholder="Last name"
                   value={lastname}
                   onChange={(e) => setLastname(e.target.value)}
+                  disabled={loading}
                 />
               </div>
             </div>
@@ -189,6 +198,7 @@ export default function RegisterPage({ onNavigateToLogin }: RegisterPageProps) {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
               />
             </div>
 
@@ -207,11 +217,14 @@ export default function RegisterPage({ onNavigateToLogin }: RegisterPageProps) {
                 placeholder="Create a password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
               />
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
             {message && <p className="text-green-500 text-sm">{message}</p>}
-            <Button className="w-full" type="submit">Continue</Button>
+            <Button className="w-full" type="submit" disabled={loading}>
+              {loading ? 'Registering...' : 'Continue'}
+            </Button>
           </div>
         </div>
 
@@ -222,6 +235,7 @@ export default function RegisterPage({ onNavigateToLogin }: RegisterPageProps) {
               variant="link"
               className="px-2"
               onClick={onNavigateToLogin}
+              disabled={loading}
             >
               Sign In
             </Button>

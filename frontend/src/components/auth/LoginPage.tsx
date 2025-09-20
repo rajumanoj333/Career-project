@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { TextScramble } from '@/components/core/text-scramble';
 import { useState } from 'react';
 import { login } from '@/services/api';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginPageProps {
   onNavigateToRegister?: () => void;
@@ -16,18 +17,23 @@ export default function LoginPage({ onNavigateToRegister }: LoginPageProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
     try {
       await login(email, password);
       // Handle successful login, e.g., redirect to a dashboard page
       console.log('Logged in successfully');
-      window.location.href = '/'; // Or wherever you want to redirect
+      navigate('/'); // Redirect to home page
     } catch (err) {
       setError('Failed to login. Please check your credentials.');
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -148,6 +154,7 @@ export default function LoginPage({ onNavigateToRegister }: LoginPageProps) {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
               />
             </div>
 
@@ -166,10 +173,13 @@ export default function LoginPage({ onNavigateToRegister }: LoginPageProps) {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
               />
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
-            <Button className="w-full" type="submit">Sign In</Button>
+            <Button className="w-full" type="submit" disabled={loading}>
+              {loading ? 'Signing In...' : 'Sign In'}
+            </Button>
           </div>
         </div>
 
@@ -180,6 +190,7 @@ export default function LoginPage({ onNavigateToRegister }: LoginPageProps) {
               variant="link"
               className="px-2"
               onClick={onNavigateToRegister}
+              disabled={loading}
             >
               Sign Up
             </Button>

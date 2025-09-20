@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
 from app import schemas
 from app.database import get_supabase_client, get_supabase_anon_client
-from supabase import Client
+from supabase import AsyncClient
 
 router = APIRouter()
 
@@ -14,11 +14,11 @@ async def test_endpoint():
 async def login_user(user: schemas.UserLogin):
     """Login user using Supabase authentication"""
     try:
-        supabase: Client = await get_supabase_anon_client()
+        supabase: AsyncClient = await get_supabase_anon_client()
         
         if not supabase:
             raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                status_code=status.HTTP_500_INTERNAL_SERVER_.INTERNAL_SERVER_ERROR,
                 detail="Supabase not configured. Please set SUPABASE_URL and SUPABASE_KEY environment variables."
             )
         
@@ -49,7 +49,7 @@ async def login_user(user: schemas.UserLogin):
 async def register_user(user: schemas.UserCreate):
     """Register user using Supabase authentication"""
     try:
-        supabase: Client = await get_supabase_anon_client()
+        supabase: AsyncClient = await get_supabase_anon_client()
         
         if not supabase:
             raise HTTPException(

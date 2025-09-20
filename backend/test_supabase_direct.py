@@ -4,12 +4,20 @@ Direct Supabase test to check email validation issues
 """
 import os
 from supabase import create_client, Client
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def test_supabase_direct():
     # You'll need to set these environment variables or replace with your actual values
-    supabase_url = os.getenv("SUPABASE_URL", "https://ejtrcbdoatgxsvmsqnzi.supabase.co")
-    supabase_key = os.getenv("SUPABASE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqdHJjYmRvYXRneHN2bXNxbnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgyODQzODMsImV4cCI6MjA3Mzg2MDM4M30.fhdy-22__1JjM0i23IG4hKBaJXJp17eieJhBW3ZHe4M")
+    supabase_url = os.getenv("SUPABASE_URL")
+    supabase_key = os.getenv("SUPABASE_KEY")
     
+    if not supabase_url or not supabase_key:
+        print("Error: SUPABASE_URL or SUPABASE_KEY environment variables are not set.")
+        print("Please ensure your .env file is configured correctly or set them in your environment.")
+        return
+
     print(f"Testing Supabase connection...")
     print(f"URL: {supabase_url}")
     print(f"Key: {supabase_key[:10]}..." if supabase_key else "No key provided")
