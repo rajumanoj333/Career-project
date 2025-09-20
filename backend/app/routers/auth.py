@@ -14,7 +14,7 @@ async def test_endpoint():
 async def login_user(user: schemas.UserLogin):
     """Login user using Supabase authentication"""
     try:
-        supabase: Client = get_supabase_anon_client()
+        supabase: Client = await get_supabase_anon_client()
         
         if not supabase:
             raise HTTPException(
@@ -23,7 +23,7 @@ async def login_user(user: schemas.UserLogin):
             )
         
         # Use Supabase auth to sign in
-        response = supabase.auth.sign_in_with_password({
+        response = await supabase.auth.sign_in_with_password({
             "email": user.email,
             "password": user.password
         })
@@ -49,7 +49,7 @@ async def login_user(user: schemas.UserLogin):
 async def register_user(user: schemas.UserCreate):
     """Register user using Supabase authentication"""
     try:
-        supabase: Client = get_supabase_anon_client()
+        supabase: Client = await get_supabase_anon_client()
         
         if not supabase:
             raise HTTPException(
@@ -59,7 +59,7 @@ async def register_user(user: schemas.UserCreate):
         
         # Use Supabase auth to sign up
         print(f"Attempting to register user: {user.email}")
-        response = supabase.auth.sign_up({
+        response = await supabase.auth.sign_up({
             "email": user.email,
             "password": user.password,
             "options": {

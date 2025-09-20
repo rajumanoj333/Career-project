@@ -19,7 +19,7 @@ def test_supabase_direct():
         print("Supabase client created successfully")
         
         # Test with a simple email
-        test_email = "test@example.com"
+        test_email = "test-gemini@gmail.com"
         test_password = "testpassword123"
         
         print(f"Testing registration with email: {test_email}")
