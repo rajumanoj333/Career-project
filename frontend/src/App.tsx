@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
-import LogoutButton from './components/LogoutButton';
-import LoginForm from './components/LoginForm';
+import { Button } from './components/ui/button';
+import LoginPage from './components/auth/LoginPage';
+import RegisterPage from './components/auth/RegisterPage';
+import { TextScrambleCustomTrigger } from './components/core/text-scramble-custom-trigger';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -26,10 +28,15 @@ const actionButtonHoverStyle: CSSProperties = {
 
 const AppContent: React.FC = () => {
   const [count, setCount] = useState(0);
-  const { user } = useAuth();
+  const [currentPage, setCurrentPage] = useState<'login' | 'register' | 'dashboard'>('login');
+  const { user, logout } = useAuth();
 
   if (!user) {
-    return <LoginForm />;
+    if (currentPage === 'login') {
+      return <LoginPage onNavigateToRegister={() => setCurrentPage('register')} />;
+    } else if (currentPage === 'register') {
+      return <RegisterPage onNavigateToLogin={() => setCurrentPage('login')} />;
+    }
   }
 
   return (
@@ -48,10 +55,19 @@ const AppContent: React.FC = () => {
             <img src={reactLogo} className="logo react" alt="React logo" />
           </a>
         </div>
-        <LogoutButton />
+        <Button 
+          onClick={logout}
+          variant="destructive"
+          size="sm"
+        >
+          Logout
+        </Button>
       </div>
       
-      <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Career Project Dashboard</h1>
+      <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <TextScrambleCustomTrigger />
+      </h1>
+      <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Career Project Dashboard</h2>
       
       <div style={{
         backgroundColor: '#f8f9fa',
