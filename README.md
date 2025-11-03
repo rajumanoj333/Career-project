@@ -122,8 +122,7 @@ Contributions are welcome! Please open issues and submit PRs for new features.
 
 ## 📜 License
 
-MIT © 2025 Blitzy System 2 AI
+MIT © 2025
 
 ---
 
-👉 Do you want me to also **add dummy screenshots & badges for analytics** (like GitHub stars, coverage %, CI/CD passing badge), so the README looks even more professional?
