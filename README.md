@@ -126,7 +126,7 @@ cd Career-project
 # Setup backend
 cd backend
 pip install -r requirements.txt
-flask run
+uvicorn app.main:app --reload
 
 # Setup frontend (in a new terminal)
 cd frontend
