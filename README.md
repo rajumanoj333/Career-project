@@ -3,9 +3,22 @@
 [![Built with Flask](https://img.shields.io/badge/Backend-Flask-blue?logo=flask)](https://flask.palletsprojects.com/)
 [![Frontend React](https://img.shields.io/badge/Frontend-React-61dafb?logo=react)](https://react.dev/)
 [![Database MongoDB](https://img.shields.io/badge/Database-MongoDB-green?logo=mongodb)](https://www.mongodb.com/)
-[![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#-license)
 
 > 🌟 A modern **EdTech + HRTech platform** that helps students, parents, and mentors with **AI-powered career guidance, psychometric assessments, financial planning, and mentorship**.
+
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [System Architecture](#️-system-architecture)
+- [Student Onboarding Flow](#-student-onboarding-flow)
+- [Tech Stack](#️-tech-stack)
+- [Project Structure](#-project-structure)
+- [Example Analytics](#-example-analytics-recharts)
+- [Getting Started](#-getting-started)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
@@ -57,6 +70,18 @@ flowchart TD
 
 ---
 
+## 📁 Project Structure
+
+```
+Career-project/
+├── backend/          # Flask API server
+├── frontend/         # React application
+├── database/         # Database schemas and migrations
+└── README.md         # This file
+```
+
+---
+
 ## 📊 Example Analytics (Recharts)
 
 ```jsx
@@ -86,21 +111,32 @@ export default function UserGrowthChart() {
 
 ## 🚀 Getting Started
 
+### Prerequisites
+- Python 3.11+
+- Node.js 18+
+- MongoDB (local or Atlas)
+
+### Installation
+
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/career-platform.git
-cd career-platform
+git clone https://github.com/rajumanoj333/Career-project.git
+cd Career-project
 
 # Setup backend
 cd backend
 pip install -r requirements.txt
 flask run
 
-# Setup frontend
+# Setup frontend (in a new terminal)
 cd frontend
 npm install
 npm run dev
 ```
+
+For detailed setup instructions, see:
+- [Backend Setup](./backend/README.md)
+- [Frontend Setup](./frontend/README.md)
 
 ---
 
@@ -116,7 +152,15 @@ npm run dev
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please open issues and submit PRs for new features.
+We welcome contributions from the community! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add some amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+Feel free to check the [roadmap](#-roadmap) above for ideas on what to work on next!
 
 ---
 
