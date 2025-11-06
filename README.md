@@ -135,8 +135,7 @@ npm run dev
 ```
 
 For detailed setup instructions, see:
-- [Backend Setup](./backend/README.md)
-- [Frontend Setup](./frontend/README.md)
+For detailed setup instructions, refer to the installation steps above.
 
 ---
 
